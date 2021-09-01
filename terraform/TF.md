@@ -1,4 +1,5 @@
 ## Best Practices for Terraform
+
 1. Don’t commit the .tfstate file
 2. Configure a backend
 3. Back up your state files
