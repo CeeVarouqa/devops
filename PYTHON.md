@@ -22,3 +22,11 @@
 8. One Container = One process
 9. Move web applications and background workers to separate containers
 10. Reduce the amount of layers and put them in order to use caching abilities
+
+#  Best Practices for Unit testing
+1. Tests should be fast
+2. Tests should be simple
+3. Test should not duplicate implementation logic
+4. Tests should be readable
+5. Tests should be deterministic
+6. if you are testing for time, use time freeze functionality
