@@ -1,0 +1,18 @@
+---
+- hosts: tag_service_docker
+  become: true
+
+  vars:
+    pip_install_packages:
+      - name: docker
+
+  roles:
+    - geerlingguy.pip
+    - geerlingguy.docker
+
+  pre_tasks:
+    - name: Install python3-pip package
+      apt:
+        name: python3-pip
+        state: present
+        update_cache: yes
