@@ -1,0 +1,4 @@
+resource "aws_key_pair" "my_key" {
+  key_name   = "my_key"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCpbwuicIePrjiuUs0BZ2W0Ht86KqxHwzvn//j0rOIpj+QwLaTxcZzPMdx3kk7jN+KnkpSn3WY0IETMFRMZzM8wGKX1z+E9erZU+xt783Nzu62+An985ZD4q0Kv7vJv6qQXouHA9NQVFiCx69nXD1prScBS9KBmK5QC2k+T+KX1YLiW0+e1asu+B5TcIGJT8owzeLxmZZtXPnQQkmHiCmbH3Iz3ph/GnZFJFzjNNt2KO97moAtsL2HjBBo1ZilPLwohAUegy0e/1E0utdc/YiJO25nG3UAkjZvm/ELkNAIF2YGNNEiZ0Vla5K5+Nf8u/XTs30dwaeerYJLc1NfHJI7IxOwnfVx1jZEF3lattuSzYvXzcCKEw8bc4ScqzJypvqg6NlPMrn+B1AUrQfx9UhJUYcRy5the89NYRZvjTbCxjKLsmt9VLFqviCrbn/UKuTQ2n6EAPSKZlP4QUC6nWpyS7HPbRzSNUqZrssf1U0rJpYRfl39H2OOrAh92fCOFYbc= selinavarouqa@Selinas-MacBook-Pro.local"
+}
