@@ -11,8 +11,33 @@
     - geerlingguy.docker
 
   pre_tasks:
-    - name: Install python3-pip package
+    - name: Install python3-pip and docker-compose package
       apt:
-        name: python3-pip
+        name:
+        - python3-pip
+        - docker-compose
         state: present
         update_cache: yes
+
+  tasks:
+    - name: Creates directory
+      file:
+        path: /opt/timezoneapp
+        state: directory
+
+    - name: Copy file with owner and permissions
+      ansible.builtin.copy:
+        src:  files/docker-compose.yml
+        dest: /opt/timezoneapp/docker-compose.yml
+        owner: admin
+        group: admin
+        mode: '0644'
+    - name: Make sure docker service is running
+      service:
+        name: docker
+        state: started
+
+    - name: Run docker compose
+      community.docker.docker_compose:
+        project_src: /opt/timezoneapp
+        state: present

@@ -1,0 +1,6 @@
+version: "3.3"
+services:
+  web:
+    image: ceevarouqa/inno_devops_lab1:latest
+    ports:
+      - "80:8000"
