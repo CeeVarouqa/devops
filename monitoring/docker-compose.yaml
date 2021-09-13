@@ -1,0 +1,90 @@
+version: "3"
+
+networks:
+  loki:
+
+volumes:
+  logs_volume:
+  grafana-storage:
+
+services:
+  prometheus:
+    image: prom/prometheus
+    networks:
+      - loki
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: 250M
+    logging:
+      options:
+        max-size: 50m
+
+  loki:
+    image: grafana/loki:2.3.0
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - loki
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: 250M
+    logging:
+      options:
+        max-size: 50m    
+
+  promtail:
+    image: grafana/promtail:2.3.0
+    volumes:
+      - logs_volume:/var/log
+    command: -config.file=/etc/promtail/config.yml
+    networks:
+      - loki
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: 250M
+    logging:
+      options:
+        max-size: 50m
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    networks:
+      - loki
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: 250M
+    logging:
+      options:
+        max-size: 50m
+
+  debian:
+    image: debian
+    networks:
+      - loki
+    volumes:
+      - logs_volume:/var/log
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: 250M
+    logging:
+      options:
+        max-size: 50m
