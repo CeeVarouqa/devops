@@ -21,3 +21,14 @@ NAME                     TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)    
 service/kubernetes       ClusterIP      10.96.0.1      <none>        443/TCP          71d
 service/tz-app-service   LoadBalancer   10.104.33.83   localhost     8000:32207/TCP   26m
 ```
+
+# Helm
+
+```
+NAME                          READY   STATUS    RESTARTS   AGE
+pod/tz-app-564b797997-5xwhm   1/1     Running   0          2m
+
+NAME                 TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+service/kubernetes   ClusterIP      10.96.0.1      <none>        443/TCP          71d
+service/tz-app       LoadBalancer   10.99.174.44   localhost     8000:31317/TCP   2m
+```
