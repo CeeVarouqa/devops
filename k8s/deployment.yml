@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tz-app-deployment
+  labels:
+    app: tz-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tz-app
+  template:
+    metadata:
+      labels:
+        app: tz-app
+    spec:
+      containers:
+      - name: tz-app
+        image: ceevarouqa/inno_devops_lab1
+        ports:
+        - containerPort: 8000
