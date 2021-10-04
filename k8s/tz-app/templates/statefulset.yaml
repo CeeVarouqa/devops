@@ -1,10 +1,11 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "tz-app.fullname" . }}
   labels:
     {{- include "tz-app.labels" . | nindent 4 }}
 spec:
+  serviceName: {{ .Chart.Name }}
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
@@ -38,15 +39,22 @@ spec:
               containerPort: 8000
               protocol: TCP
           livenessProbe:
-            httpGet:
-              path: /?timezone=Europe/Moscow
-              port: http
+            {{- toYaml .Values.container.livenessProbe | nindent 12 }}
           readinessProbe:
-            httpGet:
-              path: /?timezone=Europe/Moscow
-              port: http
+            {{- toYaml .Values.container.readinessProbe | nindent 12 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: counter
+              mountPath: /app/data
+  volumeClaimTemplates:
+    - metadata:
+        name: counter
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 10Mi
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
