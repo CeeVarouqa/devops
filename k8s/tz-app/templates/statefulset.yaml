@@ -47,8 +47,15 @@ spec:
           volumeMounts:
             - name: counter
               mountPath: /app/data
+            - name: config-volume
+              mountPath: /config.json
+              subPath: data.json
           env:
             {{- toYaml .Values.container.env | nindent 12 }}
+      volumes:
+        - name: config-volume
+          configMap:
+            name: {{ include "tz-app.fullname" . }}
   volumeClaimTemplates:
     - metadata:
         name: counter

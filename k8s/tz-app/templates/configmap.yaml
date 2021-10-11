@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "tz-app.fullname" . }}
+  labels:
+    {{- include "tz-app.labels" . | nindent 4 }}
+data:
+  data.json: |-
+    {{- $.Files.Get "data.json"  | nindent 6 -}}
