@@ -63,6 +63,12 @@ tolerations: []
 affinity: {}
 
 container:
+  env:
+    - name: MY_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: credentials
+          key: password
   livenessProbe:
     httpGet:
       path: /?timezone=Europe/Moscow
@@ -71,3 +77,5 @@ container:
     httpGet:
       path: /?timezone=Europe/Moscow
       port: http
+
+password: "test"

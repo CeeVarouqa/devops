@@ -47,6 +47,8 @@ spec:
           volumeMounts:
             - name: counter
               mountPath: /app/data
+          env:
+            {{- toYaml .Values.container.env | nindent 12 }}
   volumeClaimTemplates:
     - metadata:
         name: counter
