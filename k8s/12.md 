@@ -1,0 +1,14 @@
+> kubectl get po
+```
+(venv) selinavarouqa@Selinas-MacBook-Pro lab1_timemoscow % kubectl get po
+NAME       READY   STATUS    RESTARTS   AGE
+tz-app-0   1/1     Running   0          53m
+tz-app-1   1/1     Running   0          52m
+```
+> kubectl exec tz-app-0 -- cat /config.json
+```
+(venv) selinavarouqa@Selinas-MacBook-Pro lab1_timemoscow % kubectl exec tz-app-0 -- cat /config.json
+{
+  "test": "value"
+}%
+```
